@@ -1,0 +1,36 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:textColorPrimary">@color/primary_text</item>
+        <item name="android:textColorSecondary">@color/secondary_text</item>
+    </style>
+
+    <style name="Theme.MediaRouter.Light" parent="Base.Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowNoTitle">false</item>
+        <item name="mediaRouteButtonStyle">@style/Widget.MediaRouter.Light.MediaRouteButton</item>
+        <item name="MediaRouteControllerWindowBackground">@drawable/mr_dialog_material_background_light</item>
+        <item name="mediaRouteOffDrawable">@drawable/ic_cast_off_light</item>
+        <item name="mediaRouteConnectingDrawable">@drawable/mr_ic_media_route_connecting_mono_light</item>
+        <item name="mediaRouteOnDrawable">@drawable/ic_cast_on_light</item>
+        <item name="mediaRouteCloseDrawable">@drawable/mr_ic_close_light</item>
+        <item name="mediaRoutePlayDrawable">@drawable/mr_ic_play_light</item>
+        <item name="mediaRoutePauseDrawable">@drawable/mr_ic_pause_light</item>
+        <item name="mediaRouteCastDrawable">@drawable/mr_ic_cast_light</item>
+        <item name="mediaRouteAudioTrackDrawable">@drawable/mr_ic_audiotrack_light</item>
+        <item name="mediaRouteDefaultIconDrawable">@drawable/ic_cast_grey</item>
+        <item name="mediaRouteBluetoothIconDrawable">@drawable/ic_bluetooth_grey</item>
+        <item name="mediaRouteTvIconDrawable">@drawable/ic_tv_light</item>
+        <item name="mediaRouteSpeakerIconDrawable">@drawable/ic_speaker_light</item>
+        <item name="mediaRouteSpeakerGroupIconDrawable">@drawable/ic_speaker_group_light</item>
+        <item name="mediaRouteChooserPrimaryTextStyle">@style/Widget.MediaRouter.ChooserText.Primary.Light</item>
+        <item name="mediaRouteChooserSecondaryTextStyle">@style/Widget.MediaRouter.ChooserText.Secondary.Light</item>
+        <item name="mediaRouteControllerTitleTextStyle">@style/Widget.MediaRouter.ControllerText.Title.Dark</item>
+        <item name="mediaRouteControllerPrimaryTextStyle">@style/Widget.MediaRouter.ControllerText.Primary.Light</item>
+        <item name="mediaRouteControllerSecondaryTextStyle">@style/Widget.MediaRouter.ControllerText.Secondary.Light</item>
+    </style>
+</resources>
