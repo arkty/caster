@@ -1,8 +1,7 @@
 package ga.arkty.caster;
 
 import android.net.Uri;
-import android.os.Handler;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 
 import com.google.android.gms.cast.ApplicationMetadata;
 import com.google.android.gms.cast.MediaInfo;
@@ -25,7 +24,7 @@ import java.util.List;
 
 public abstract class SingleVideoCastConsumer extends VideoCastConsumerImpl {
 
-    private BaseActivity activity;
+    private AppCompatActivity activity;
 
     private final String videoUrl;
     private final String title;
@@ -33,7 +32,7 @@ public abstract class SingleVideoCastConsumer extends VideoCastConsumerImpl {
     private final String imageUrl;
     private final String contentType;
 
-    public SingleVideoCastConsumer(BaseActivity activity, String videoUrl, String title, String subtitle, String imageUrl, String contentType) {
+    public SingleVideoCastConsumer(AppCompatActivity activity, String videoUrl, String title, String subtitle, String imageUrl, String contentType) {
         this.activity = activity;
         this.videoUrl = videoUrl;
         this.title = title;

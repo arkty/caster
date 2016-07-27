@@ -1,35 +1,26 @@
 package ga.arkty.caster;
 
-import android.annotation.TargetApi;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.MenuItem;
 
 import com.google.android.gms.cast.MediaQueueItem;
 import com.google.android.libraries.cast.companionlibrary.cast.VideoCastManager;
 import com.google.android.libraries.cast.companionlibrary.cast.callbacks.VideoCastConsumer;
 import com.google.android.libraries.cast.companionlibrary.cast.exceptions.NoConnectionException;
 import com.google.android.libraries.cast.companionlibrary.cast.exceptions.TransientNetworkDisconnectionException;
-import com.google.android.libraries.cast.companionlibrary.widgets.IntroductoryOverlay;
 
 import org.json.JSONObject;
 
-public class MainActivity extends BaseActivity {
-    private static final String TAG = "MainActivity";
+public class MainActivity extends AppCompatActivity {
 
     private VideoCastManager castManager;
     private VideoCastConsumer castConsumer;
     private Toolbar toolbar;
-
-    private IntroductoryOverlay mOverlay;
-    private MenuItem mMediaRouterMenuItem;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +28,6 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(R.string.app_name);
         setSupportActionBar(toolbar);
 
         castManager = VideoCastManager.getInstance();
@@ -57,20 +47,13 @@ public class MainActivity extends BaseActivity {
 
                 castManager.queueLoad(items, startIndex, repeatMode, customData);
             }
-
-            @Override
-            public void onCastAvailabilityChanged(boolean castPresent) {
-                if (castPresent) {
-                    showOverlay();
-                }
-            }
         };
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
-        mMediaRouterMenuItem = castManager.addMediaRouterButton(menu, R.id.media_route_menu_item);
+        castManager.addMediaRouterButton(menu, R.id.media_route_menu_item);
         return true;
     }
 
@@ -82,9 +65,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onResume() {
-        Log.d(TAG, "onResume() was called");
         castManager = VideoCastManager.getInstance();
-        if (null != castManager) {
+        if (castManager != null) {
             castManager.addVideoCastConsumer(castConsumer);
             castManager.incrementUiCounter();
         }
@@ -106,31 +88,5 @@ public class MainActivity extends BaseActivity {
                castManager.disconnect();
             }
         },500);
-    }
-
-    private void showOverlay() {
-        if(mOverlay != null) {
-            mOverlay.remove();
-        }
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (mMediaRouterMenuItem.isVisible()) {
-                    mOverlay = new IntroductoryOverlay.Builder(MainActivity.this)
-                            .setMenuItem(mMediaRouterMenuItem)
-                            .setTitleText(R.string.app_name)
-                            .setSingleTime()
-                            .setOnDismissed(new IntroductoryOverlay.OnOverlayDismissedListener() {
-                                @Override
-                                public void onOverlayDismissed() {
-                                    Log.d(TAG, "overlay is dismissed");
-                                    mOverlay = null;
-                                }
-                            })
-                            .build();
-                    mOverlay.show();
-                }
-            }
-        }, 1000);
     }
 }
